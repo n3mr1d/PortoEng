@@ -8,3 +8,8 @@ require_once __DIR__ . "/config.php";
 foreach (glob(__DIR__ . '/resource/function/*.php') as $file) {
     require_once $file;
 }
+
+// load all component function
+foreach (glob(__DIR__ . '/resource/function/component/*.php') as $component) {
+    require_once $component;
+}

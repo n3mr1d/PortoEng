@@ -1,0 +1,41 @@
+:root {
+    --icon-bg: #17252f;
+    --icon-hover-bg: #131D25;
+    --icon-transition: background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1), transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+
+
+.iconbg {
+    background-color: var(--icon-bg);
+    transition: var(--icon-transition);
+}
+
+.iconbg:hover {
+    background-color: var(--icon-hover-bg);
+    transform: scale(1.08) rotate(-6deg);
+}
+
+.aboutme h2 {
+    position: relative;
+    display: inline-block;
+    text-align: center;
+}
+
+.aboutme h2::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    height: 2px;
+    background: linear-gradient(90deg, #007bff, #0056b3);
+    border-radius: 2px;
+}
+
+.skill:hover {
+    * {
+        transform: scale(1.09) rotate(-4deg);
+    }
+}
