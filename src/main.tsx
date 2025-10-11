@@ -1,10 +1,20 @@
 import { StrictMode } from "react";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { createRoot } from "react-dom/client";
 import "./index.css";
 import App from "./App.tsx";
+import Donate from "./components/pages/donate.tsx";
+import BorderBeamButton from "./components/borderBem.tsx";
 
 createRoot(document.getElementById("root")!).render(
-  <StrictMode>
-    <App />
-  </StrictMode>,
+    <StrictMode>
+        <BrowserRouter>
+            <Routes>
+            <Route path="/" element={<App />} />
+            <Route path="/donate" element={<Donate/>} />
+            <Route path="/test" element={<BorderBeamButton/>}/>
+        </Routes>
+        </BrowserRouter>
+
+    </StrictMode>,
 );

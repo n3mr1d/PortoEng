@@ -20,11 +20,16 @@ import { ScrollTrigger } from "gsap/ScrollTrigger"
 import LightRays from "./components/background"
 import TextType from "./components/Typetext"
 import { Banner } from "./components/banner"
+import Footer from "./components/footer"
+import BorderBeamButton from "./components/borderBem"
 
 export default function Page() {
     const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
     const rootRef = useRef<HTMLDivElement | null>(null)
     document.title = "Home | Nameraid";
+    function handleClick(link:string){
+window.open(link, "_blank")
+    }
     useEffect(() => {
         const handleMouseMove = (e: MouseEvent) => {
             setMousePosition({ x: e.clientX, y: e.clientY })
@@ -151,6 +156,25 @@ export default function Page() {
     return (
         <div ref={rootRef} className="min-h-screen bg-black text-white relative overflow-hidden">
             {/* Animated background gradient */}
+               <div
+        style={{
+          transform: `translate3d(${mousePosition.x}px, ${mousePosition.y}px, 0)`,
+        }}
+        className="
+          fixed top-0 left-0 z-[9999]
+          w-4 h-4
+          flex items-center justify-center
+          pointer-events-none
+          transition-transform duration-75 ease-linear
+        "
+      >
+        <div className="relative w-full h-full">
+          {/* Garis vertikal */}
+          <span className="absolute top-0 left-1/2 w-[1px] h-full bg-white -translate-x-1/2" />
+          {/* Garis horizontal */}
+          <span className="absolute top-1/2 left-0 h-[1px] w-full bg-white -translate-y-1/2" />
+        </div>
+      </div>
             <div className="fixed inset-0 opacity-30 pointer-events-none" style={{
                 background:
                     `radial-gradient(600px circle at ${mousePosition.x}px ${mousePosition.y}px,
@@ -184,30 +208,20 @@ export default function Page() {
                     <h1 className="hero-title text-5xl md:text-7xl font-bold mb-6 leading-tight">
                         <span
                             className="bg-gradient-to-r from-white via-gray-300 to-gray-500 bg-clip-text text-transparent inline-block">
-                            <TextType text={["Hey, I'm Nameraid", "I'm a Full Stack Dev", "Lets Connect With me!"]} loop={true} variableSpeed={{ min: 100, max: 200 }}
-                                        cursorClassName = "text-green-400 font-bold" cursorCharacter = "<"
-                                        className = "bg-gradient-to-r from-white via-gray-300 to-gray-500 bg-clip-text text-transparent" />
-                                </span>
+                            <TextType text={["Hey, I'm Nameraid", "I'm a Full Stack Dev"
+                                , "Lets Connect With me!"]} loop={true} variableSpeed={{ min: 100, max: 200 }}
+                                cursorClassName="text-green-400 font-bold" cursorCharacter="<"
+                                className="bg-gradient-to-r from-white via-gray-300 to-gray-500 bg-clip-text text-transparent" />
+                        </span>
                     </h1>
 
 
                     <p className="hero-subtitle text-xl md:text-2xl text-gray-400 mb-8 max-w-2xl mx-auto">
                         Building modern web applications with cutting-edge technologies
                     </p>
-
-                    <div className="flex gap-4 justify-center flex-wrap">
-                        <Button onClick={() => scrollToSection("projects")}
-                            className="hero-cta bg-white text-black hover:bg-gray-200"
-                        >
-                            View Projects
-                        </Button>
-
-                        <Button onClick={() => scrollToSection("contact")}
-                            variant="outline"
-                            className="hero-cta border-white/20 text-white hover:bg-white/10"
-                        >
-                            Contact Me
-                        </Button>
+                    <div className="flex gap-4 justify-center w-full">
+<Button variant={"outline"} onClick={()=> handleClick('https://github.com/n3mr1d')} type="button" className="text-black cursor-pointer font-semibold"> <Github/> Github</Button>
+                    <Button>Hallo dan</Button>
                     </div>
 
                     <div className="mt-12 animate-bounce">
@@ -219,46 +233,63 @@ export default function Page() {
                 <Banner speed={10000} />
             </section>
 
-            {/* About Section */}
+
             <section id="about"
                 className="reveal-section min-h-screen flex items-center justify-center px-6 py-20">
-                <div className="max-w-4xl mx-auto">
-                    <h2 className="text-4xl md:text-5xl font-bold mb-8 text-center">
-                        <span
-                            className="bg-gradient-to-r from-white to-gray-400 bg-clip-text text-transparent">About
-                            Me</span>
+                <div className="max-w-5xl mx-auto w-full">
+                    {/* Title */}
+                    <h2 className="text-4xl md:text-5xl font-bold mb-12 text-center">
+                        <span className="bg-gradient-to-r from-white to-gray-400 bg-clip-text text-transparent">
+                            About Me
+                        </span>
                     </h2>
-                    <Card className="bg-white/5 border-white/10 backdrop-blur">
-                        <CardContent className="p-8">
-                            <p className="text-lg text-gray-300 leading-relaxed mb-6">
-                                I'm a passionate full-stack developer with expertise in building scalable web
-                                applications. With a
-                                strong foundation in both frontend and backend technologies, I create seamless
-                                digital experiences that
-                                solve real-world problems.
-                            </p>
-                            <p className="text-lg text-gray-300 leading-relaxed mb-6">
-                                My journey in software development started with a curiosity about how things
-                                work on the web. Today, I
-                                specialize in modern JavaScript frameworks, cloud architecture, and database
-                                optimization.
-                            </p>
-                            <div className="flex gap-4 flex-wrap">
-                                <Badge variant="outline" className="border-white/20 text-white">
-                                    5+ Years Experience
-                                </Badge>
-                                <Badge variant="outline" className="border-white/20 text-white">
-                                    20+ Projects Completed
-                                </Badge>
-                                <Badge variant="outline" className="border-white/20 text-white">
-                                    Open Source Contributor
-                                </Badge>
-                            </div>
-                        </CardContent>
-                    </Card>
+
+                    {/* Content */}
+                    <div className="flex flex-col-reverse md:flex-row gap-8">
+
+                        {/* Left Card (Text) */}
+                        <Card className="bg-white/5 border-white/10 w-full backdrop-blur-lg shadow-lg">
+                            <CardContent className="p-8">
+                                <p className="text-lg text-gray-300 leading-relaxed mb-6">
+                                    I'm a passionate full-stack developer with expertise in building
+                                    scalable web applications. With a strong foundation in both
+                                    frontend and backend technologies, I create seamless digital
+                                    experiences that solve real-world problems.
+                                </p>
+                                <p className="text-lg text-gray-300 leading-relaxed mb-6">
+                                    My journey in software development started with a curiosity about
+                                    how things work on the web. Today, I specialize in modern
+                                    JavaScript frameworks, cloud architecture, and database
+                                    optimization.
+                                </p>
+                                <div className="flex flex-wrap gap-3">
+                                    <Badge variant="outline" className="border-white/20 text-white">
+                                        5+ Years Experience
+                                    </Badge>
+                                    <Badge variant="outline" className="border-white/20 text-white">
+                                        20+ Projects Completed
+                                    </Badge>
+                                    <Badge variant="outline" className="border-white/20 text-white">
+                                        Open Source Contributor
+                                    </Badge>
+                                </div>
+                            </CardContent>
+                        </Card>
+
+                        {/* Right Card (Image) */}
+                        <Card
+                            className="bg-white/5 border-white/10 w-full md:max-w-sm backdrop-blur-lg shadow-lg flex items-center justify-center">
+                            <CardContent className="p-6 flex-col flex justify-center">
+                                <img src="./file.jpg" alt="About me"
+                                    className="rounded-lg w-full h-auto object-cover shadow-md" />
+                                <div>
+                                    <BorderBeamButton />
+                                </div>
+                            </CardContent>
+                        </Card>
+                    </div>
                 </div>
             </section>
-
             {/* Skills Section */}
             <section id="skills"
                 className="reveal-section min-h-screen flex items-center justify-center px-6 py-20">
@@ -372,9 +403,7 @@ export default function Page() {
             </section>
 
             {/* Footer */}
-            <footer className="border-t border-white/10 py-8 px-6 text-center text-gray-400">
-                <p>© 2025 Portfolio. Built with Next.js + shadcn/ui</p>
-            </footer>
+            <Footer />
         </div>
     )
 }
