@@ -10,6 +10,8 @@ import {
     Server,
     Layers,
     ChevronDown,
+    User,
+    TerminalIcon,
 } from "lucide-react"
 import { Badge } from "@/components/ui/badge"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
@@ -22,13 +24,21 @@ import TextType from "./components/Typetext"
 import { Banner } from "./components/banner"
 import Footer from "./components/footer"
 import BorderBeamButton from "./components/borderBem"
+import Certificate from "./components/certificate"
+import ProfileGit from "./components/profileGit"
+import FeatureProject from "./components/featureproject"
 
 export default function Page() {
     const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
     const rootRef = useRef<HTMLDivElement | null>(null)
     document.title = "Home | Nameraid";
-    function handleClick(link:string){
-window.open(link, "_blank")
+    function umurHitung(umur: number) {
+        const tahun = new Date().getFullYear();
+        const umurJawab = tahun - umur;
+        return umurJawab;
+    }
+    function handleClick(link: string) {
+        window.open(link, "_blank")
     }
     useEffect(() => {
         const handleMouseMove = (e: MouseEvent) => {
@@ -121,33 +131,7 @@ window.open(link, "_blank")
         },
     ]
 
-    const projects = [
-        {
-            title: "E-Commerce Platform",
-            description: "Full-stack e-commerce solution with payment integration and real-time",
 
-            tags: ["React", "Node.js", "PostgreSQL", "Stripe"],
-            link: "#",
-        },
-        {
-            title: "AI Chat Application",
-            description: "Real-time chat application with AI-powered responses and sentiment analysis",
-            tags: ["Next.js", "Python", "TensorFlow", "WebSocket"],
-            link: "#",
-        },
-        {
-            title: "Analytics Dashboard",
-            description: "Interactive data visualization dashboard for business intelligence",
-            tags: ["React", "D3.js", "FastAPI", "MongoDB"],
-            link: "#",
-        },
-        {
-            title: "DevOps Pipeline",
-            description: "Automated CI/CD pipeline with containerization and monitoring",
-            tags: ["Docker", "Kubernetes", "Jenkins", "AWS"],
-            link: "#",
-        },
-    ]
 
     const scrollToSection = (sectionId: string) => {
         document.getElementById(sectionId)?.scrollIntoView({ behavior: "smooth" })
@@ -156,25 +140,20 @@ window.open(link, "_blank")
     return (
         <div ref={rootRef} className="min-h-screen bg-black text-white relative overflow-hidden">
             {/* Animated background gradient */}
-               <div
-        style={{
-          transform: `translate3d(${mousePosition.x}px, ${mousePosition.y}px, 0)`,
-        }}
-        className="
+            <div style={{ transform: `translate3d(${mousePosition.x}px, ${mousePosition.y}px, 0)`, }} className="
           fixed top-0 left-0 z-[9999]
           w-4 h-4
           flex items-center justify-center
           pointer-events-none
           transition-transform duration-75 ease-linear
-        "
-      >
-        <div className="relative w-full h-full">
-          {/* Garis vertikal */}
-          <span className="absolute top-0 left-1/2 w-[1px] h-full bg-white -translate-x-1/2" />
-          {/* Garis horizontal */}
-          <span className="absolute top-1/2 left-0 h-[1px] w-full bg-white -translate-y-1/2" />
-        </div>
-      </div>
+        ">
+                <div className="relative w-full h-full">
+                    {/* Garis vertikal */}
+                    <span className="absolute top-0 left-1/2 w-[1px] h-full bg-white -translate-x-1/2" />
+                    {/* Garis horizontal */}
+                    <span className="absolute top-1/2 left-0 h-[1px] w-full bg-white -translate-y-1/2" />
+                </div>
+            </div>
             <div className="fixed inset-0 opacity-30 pointer-events-none" style={{
                 background:
                     `radial-gradient(600px circle at ${mousePosition.x}px ${mousePosition.y}px,
@@ -220,8 +199,11 @@ window.open(link, "_blank")
                         Building modern web applications with cutting-edge technologies
                     </p>
                     <div className="flex gap-4 justify-center w-full">
-<Button variant={"outline"} onClick={()=> handleClick('https://github.com/n3mr1d')} type="button" className="text-black cursor-pointer font-semibold"> <Github/> Github</Button>
-                    <Button>Hallo dan</Button>
+                        <Button variant={"outline"} onClick={() => handleClick('https://github.com/n3mr1d')}
+                            type="button" className="text-black cursor-pointer font-semibold">
+                            <Github /> Github
+                        </Button>
+                        <Button>Hallo dan</Button>
                     </div>
 
                     <div className="mt-12 animate-bounce">
@@ -236,9 +218,18 @@ window.open(link, "_blank")
 
             <section id="about"
                 className="reveal-section min-h-screen flex items-center justify-center px-6 py-20">
-                <div className="max-w-5xl mx-auto w-full">
+                <div className="max-w-5xl flex flex-col justify-center mx-auto w-full">
+                    <div className="flex justify-center">
+                        <div
+                            className="header-badge inline-flex justify-center items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 mb-6">
+                            <User className="w-4 h-4 text-white" />
+                            <span className="text-sm text-gray-400">Who Am I</span>
+                        </div>
+                    </div>
+
                     {/* Title */}
-                    <h2 className="text-4xl md:text-5xl font-bold mb-12 text-center">
+                    <h2
+                        className="text-4xl md:text-5xl flex items-center justify-center font-bold mb-12 text-center">
                         <span className="bg-gradient-to-r from-white to-gray-400 bg-clip-text text-transparent">
                             About Me
                         </span>
@@ -280,9 +271,20 @@ window.open(link, "_blank")
                         <Card
                             className="bg-white/5 border-white/10 w-full md:max-w-sm backdrop-blur-lg shadow-lg flex items-center justify-center">
                             <CardContent className="p-6 flex-col flex justify-center">
-                                <img src="./file.jpg" alt="About me"
-                                    className="rounded-lg w-full h-auto object-cover shadow-md" />
+                                <div className="relative">
+                                    <img src="./file.jpg" alt="About me"
+                                        className="rounded-lg w-full h-auto object-cover shadow-md" />
+                                    <div className="absolute m-2 top-0 right-0">
+                                        <Badge className="border-white/20 font-xl text-white">
+                                            <User /> {umurHitung(2006)} <span className="text-gray-400">Years
+                                                Old</span>
+                                        </Badge>
+
+                                    </div>
+                                </div>
+
                                 <div>
+
                                     <BorderBeamButton />
                                 </div>
                             </CardContent>
@@ -290,10 +292,20 @@ window.open(link, "_blank")
                     </div>
                 </div>
             </section>
+            <ProfileGit />
+            <Certificate />
             {/* Skills Section */}
             <section id="skills"
                 className="reveal-section min-h-screen flex items-center justify-center px-6 py-20">
                 <div className="max-w-6xl mx-auto w-full">
+                    <div className="flex justify-center">
+                        <div
+                            className="header-badge inline-flex justify-center items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 mb-6">
+                            <TerminalIcon className="w-4 h-4 text-white" />
+                            <span className="text-sm text-gray-400">Skill And Experience</span>
+                        </div>
+                    </div>
+
                     <h2 className="text-4xl md:text-5xl font-bold mb-12 text-center">
                         <span className="bg-gradient-to-r from-white to-gray-400 bg-clip-text text-transparent">
                             Skills & Expertise
@@ -322,44 +334,8 @@ window.open(link, "_blank")
                     </div>
                 </div>
             </section>
-
             {/* Projects Section */}
-            <section id="projects"
-                className="reveal-section min-h-screen flex items-center justify-center px-6 py-20">
-                <div className="max-w-6xl mx-auto w-full">
-                    <h2 className="text-4xl md:text-5xl font-bold mb-12 text-center">
-                        <span className="bg-gradient-to-r from-white to-gray-400 bg-clip-text text-transparent">
-                            Featured Projects
-                        </span>
-                    </h2>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        {projects.map((project, index) => (
-                            <Card key={index}
-                                className="project-card bg-white/5 border-white/10 backdrop-blur hover:bg-white/10 transition-all duration-300 hover:scale-105 group">
-                                <CardHeader>
-                                    <CardTitle className="text-white flex items-center justify-between">
-                                        {project.title}
-                                        <ExternalLink
-                                            className="w-5 h-5 opacity-0 group-hover:opacity-100 transition-opacity" />
-                                    </CardTitle>
-                                    <CardDescription className="text-gray-400">{project.description}
-                                    </CardDescription>
-                                </CardHeader>
-                                <CardFooter>
-                                    <div className="flex gap-2 flex-wrap">
-                                        {project.tags.map((tag, i) => (
-                                            <Badge key={i} variant="outline" className="border-white/20 text-gray-300">
-                                                {tag}
-                                            </Badge>
-                                        ))}
-                                    </div>
-                                </CardFooter>
-                            </Card>
-                        ))}
-                    </div>
-                </div>
-            </section>
-
+            <FeatureProject />
             {/* Contact Section */}
             <section id="contact"
                 className="reveal-section min-h-screen flex items-center justify-center px-6 py-20">

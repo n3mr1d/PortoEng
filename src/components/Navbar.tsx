@@ -9,33 +9,36 @@ import gsap from "gsap";
 export default function Navbar() {
     const location = useLocation();
     const [open, setOpen] = useState(false);
-    const logon = useRef<HTMLImageElement>(null);
+    const logoRef = useRef<HTMLImageElement>(null);
     const openMobile = () => {
         // ambil element navbar
         const nav = document.getElementsByTagName("nav")[0];
         nav.classList.toggle("bg-black");
         setOpen(!open);
     }
-    useEffect(() => {
-        const tl = gsap.timeline()
-        tl.to(logon.current, {
-            rotate: 100,
-            duration: 1,
-            ease: "power2.inOut",
-            yoyo: true,
-            repeat: 1,
-            transformOrigin: "center center",
-        })
-        tl.to(logon.current, {
-            backgroundColor: "black",
-
-            x: 100,
-            duration: 1,
-            ease: "power2.inOut",
-            yoyo: true,
-            repeat: 1,
-        })
+  useEffect(() => {
+    if (!logoRef.current) return
+    const tl = gsap.timeline()
+    tl.to(logoRef.current, {
+      rotate: 100,
+      duration: 1,
+      ease: "power2.inOut",
+      yoyo: true,
+      repeat: 1,
+      transformOrigin: "center center",
+    }).to(logoRef.current, {
+      x: 100,
+      duration: 1,
+      ease: "power2.inOut",
+      yoyo: true,
+      repeat: 1,
     })
+
+    return () => {
+      tl.kill()
+    }
+  }, [])
+
     const navlist = [
         { name: "Home", href: "/", icon: Home },
         { name: "Project", href: "/project", icon: FolderArchive },
@@ -48,7 +51,7 @@ export default function Navbar() {
             <div className="flex items-center justify-between max-w-6xl mx-auto px-4 py-3 backdrop-blur-sm">
                 {/* Logo */}
                 <div className="flex items-center">
-                    <img ref={logon} src={logo} alt="nameraid logo" className="w-8 h-8 rounded-full" />
+                    <img ref={logoRef} src={logo} alt="nameraid logo" className="w-8 h-8 rounded-full" />
                     <span className="text-white font-bold text-xl tracking-tight ml-1">
                         ameraid
                     </span>

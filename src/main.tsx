@@ -4,7 +4,8 @@ import { createRoot } from "react-dom/client";
 import "./index.css";
 import App from "./App.tsx";
 import Donate from "./components/pages/donate.tsx";
-import BorderBeamButton from "./components/borderBem.tsx";
+
+import ProfileGit from "./components/profileGit.tsx";
 
 createRoot(document.getElementById("root")!).render(
     <StrictMode>
@@ -12,7 +13,7 @@ createRoot(document.getElementById("root")!).render(
             <Routes>
             <Route path="/" element={<App />} />
             <Route path="/donate" element={<Donate/>} />
-            <Route path="/test" element={<BorderBeamButton/>}/>
+            <Route path="/test" element={<ProfileGit />}/>
         </Routes>
         </BrowserRouter>
 
