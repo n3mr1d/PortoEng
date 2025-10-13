@@ -1,32 +1,29 @@
 import { useEffect, useRef, useState } from "react"
 import {
-    Computer,
     Github,
     Linkedin,
     Mail,
-    ExternalLink,
     Code,
     Database,
     Server,
     Layers,
-    ChevronDown,
     User,
     TerminalIcon,
 } from "lucide-react"
 import { Badge } from "@/components/ui/badge"
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import Navbar from "@/components/Navbar"
 import gsap from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
-import LightRays from "./components/background"
-import TextType from "./components/Typetext"
+
 import { Banner } from "./components/banner"
 import Footer from "./components/footer"
 import BorderBeamButton from "./components/borderBem"
 import Certificate from "./components/certificate"
 import ProfileGit from "./components/profileGit"
 import FeatureProject from "./components/featureproject"
+import Hero from "./components/hero"
 
 export default function Page() {
     const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
@@ -37,9 +34,7 @@ export default function Page() {
         const umurJawab = tahun - umur;
         return umurJawab;
     }
-    function handleClick(link: string) {
-        window.open(link, "_blank")
-    }
+
     useEffect(() => {
         const handleMouseMove = (e: MouseEvent) => {
             setMousePosition({ x: e.clientX, y: e.clientY })
@@ -58,7 +53,6 @@ export default function Page() {
                 .from(".hero-subtitle", { y: 20, opacity: 0, duration: 0.6 }, "-=0.35")
                 .from(".hero-cta", { y: 18, opacity: 0, duration: 0.5, stagger: 0.08 }, "-=0.35")
 
-            // Sections reveal on scroll
             gsap.utils.toArray<HTMLElement>(".reveal-section").forEach((el) => {
                 gsap.from(el, {
                     opacity: 0,
@@ -133,9 +127,6 @@ export default function Page() {
 
 
 
-    const scrollToSection = (sectionId: string) => {
-        document.getElementById(sectionId)?.scrollIntoView({ behavior: "smooth" })
-    }
 
     return (
         <div ref={rootRef} className="min-h-screen bg-black text-white relative overflow-hidden">
@@ -170,47 +161,8 @@ export default function Page() {
             <Navbar />
 
             {/* Hero Section */}
-            <section id="home"
-                className="relative min-h-screen flex items-center justify-center px-6 pt-20 overflow-hidden">
-                {/* Light Rays */}
-                <LightRays className="absolute inset-0  pointer-events-none" raysOrigin="top-center"
-                    raysColor="#ffffff" raysSpeed={1.5} lightSpread={0.8} rayLength={1.2} followMouse={true}
-                    mouseInfluence={0.1} noiseAmount={0.1} distortion={0.05} />
 
-                {/* Content */}
-                <div className="relative z-10 max-w-4xl mx-auto text-center">
-                    <Badge className="hero-badge mb-6 bg-white/10 text-white border-white/20 hover:bg-white/20">
-                        <span className="mr-2">Welcome to My Space</span>
-                        <Computer className="w-4 h-4" />
-                    </Badge>
-
-                    <h1 className="hero-title text-5xl md:text-7xl font-bold mb-6 leading-tight">
-                        <span
-                            className="bg-gradient-to-r from-white via-gray-300 to-gray-500 bg-clip-text text-transparent inline-block">
-                            <TextType text={["Hey, I'm Nameraid", "I'm a Full Stack Dev"
-                                , "Lets Connect With me!"]} loop={true} variableSpeed={{ min: 100, max: 200 }}
-                                cursorClassName="text-green-400 font-bold" cursorCharacter="<"
-                                className="bg-gradient-to-r from-white via-gray-300 to-gray-500 bg-clip-text text-transparent" />
-                        </span>
-                    </h1>
-
-
-                    <p className="hero-subtitle text-xl md:text-2xl text-gray-400 mb-8 max-w-2xl mx-auto">
-                        Building modern web applications with cutting-edge technologies
-                    </p>
-                    <div className="flex gap-4 justify-center w-full">
-                        <Button variant={"outline"} onClick={() => handleClick('https://github.com/n3mr1d')}
-                            type="button" className="text-black cursor-pointer font-semibold">
-                            <Github /> Github
-                        </Button>
-                        <Button>Hallo dan</Button>
-                    </div>
-
-                    <div className="mt-12 animate-bounce">
-                        <ChevronDown className="w-6 h-6 mx-auto text-gray-400" />
-                    </div>
-                </div>
-            </section>
+            <Hero />
             <section className="w-full flex justify-center">
                 <Banner speed={10000} />
             </section>
@@ -272,7 +224,7 @@ export default function Page() {
                             className="bg-white/5 border-white/10 w-full md:max-w-sm backdrop-blur-lg shadow-lg flex items-center justify-center">
                             <CardContent className="p-6 flex-col flex justify-center">
                                 <div className="relative">
-                                    <img src="./file.jpg" alt="About me"
+                                    <img src="./file.png" alt="About me"
                                         className="rounded-lg w-full h-auto object-cover shadow-md" />
                                     <div className="absolute m-2 top-0 right-0">
                                         <Badge className="border-white/20 font-xl text-white">

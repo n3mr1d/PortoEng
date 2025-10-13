@@ -98,9 +98,11 @@ export default function FeatureProject() {
                                     </Button>
                                 </div>
                             </CardFooter>
+
                         </Card>
                     ))}
                 </div>
+
             </div>
         </section>
     )
