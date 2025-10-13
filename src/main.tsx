@@ -5,16 +5,18 @@ import "./index.css";
 import App from "./App.tsx";
 import Donate from "./components/pages/donate.tsx";
 
-import ProfileGit from "./components/profileGit.tsx";
+import Linktree from "./components/pages/linktree.tsx";
+import Contribution from "./components/pages/contribution.tsx";
 
 createRoot(document.getElementById("root")!).render(
     <StrictMode>
         <BrowserRouter>
             <Routes>
-            <Route path="/" element={<App />} />
-            <Route path="/donate" element={<Donate/>} />
-            <Route path="/test" element={<ProfileGit />}/>
-        </Routes>
+                <Route path="/" element={<App />} />
+                <Route path="/donate" element={<Donate />} />
+                <Route path="/linktree" element={<Linktree />} />
+                <Route path="/contribution" element={<Contribution />} />
+            </Routes>
         </BrowserRouter>
 
     </StrictMode>,

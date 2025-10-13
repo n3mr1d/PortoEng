@@ -1,7 +1,6 @@
 import { ArrowRight, Award, ExternalLink } from "lucide-react"
 import { Card } from "@/components/ui/card"
-import { useEffect, useRef } from "react"
-import gsap from "gsap"
+
 
 export default function Certificate() {
 
