@@ -37,7 +37,6 @@ interface Repository {
 export default function ProfileGit() {
     const [viewer, setViewer] = useState<Viewer | null>(null);
     const [repositories, setRepositories] = useState<Repository[]>([]);
-    const [error, setError] = useState<string | null>(null);
     const [loading, setLoading] = useState(true);
     const key = import.meta.env.VITE_MEKEY as string;
 
@@ -92,23 +91,14 @@ export default function ProfileGit() {
                 });
                 const json = await response.json();
 
-                if (json.errors) {
-                    console.error(json.errors);
-                    // Fallback to static data if API fails
-                    setViewer(staticData.viewer);
-                    setRepositories(staticData.repositories);
-                    setLoading(false);
-                    return;
-                }
+
 
                 setViewer(json.data.viewer);
                 setRepositories(json.data.viewer.repositories.nodes.slice(0, 6));
                 setLoading(false);
             } catch (err) {
                 console.error(err);
-                // Fallback to static data
-                setViewer(staticData.viewer);
-                setRepositories(staticData.repositories);
+
                 setLoading(false);
             }
         };
@@ -127,13 +117,7 @@ export default function ProfileGit() {
         );
     }
 
-    if (error) {
-        return (
-            <div className="min-h-screen bg-black flex items-center justify-center">
-                <p className="text-red-500">{error}</p>
-            </div>
-        );
-    }
+
 
     if (!viewer) return null;
 

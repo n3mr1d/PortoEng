@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
-import { motion, useMotionValue, useTransform } from "framer-motion";
+import { motion, useMotionValue, useTransform, type Variants } from "framer-motion";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Star, GitFork, ExternalLink, Github, Code2, HandGrab } from "lucide-react";
@@ -10,12 +10,16 @@ import { Dialog, DialogContent } from "../ui/dialog";
 import { DialogTrigger } from "@radix-ui/react-dialog";
 
 // 🎨 Animation variants for framer-motion
-const fadeInUp = {
-  hidden: { opacity: 0, y: 40 },
+const fadeInUp: Variants = {
+  hidden: { opacity: 0, y: 50 },
   visible: (i: number) => ({
     opacity: 1,
     y: 0,
-    transition: { delay: i * 0.1, duration: 0.6, ease: "easeOut" },
+    transition: {
+      delay: i * 0.1,
+      duration: 0.6,
+      ease: "easeInOut", // gunakan array easing, bukan string
+    },
   }),
 };
 

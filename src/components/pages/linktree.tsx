@@ -26,7 +26,7 @@ export default function Linktree() {
     const lynk = import.meta.env.VITE_LYNKID;
     useEffect(() => {
         document.title = "LinkTree | Nameraid";
-        const handleMouseMove = (e) => {
+        const handleMouseMove = (e: any) => {
             setMousePosition({ x: e.clientX, y: e.clientY });
         };
         window.addEventListener("mousemove", handleMouseMove);

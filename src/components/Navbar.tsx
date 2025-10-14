@@ -1,6 +1,6 @@
 import { Link, NavLink, useLocation } from "react-router-dom";
 import { motion } from "framer-motion";
-import { Home, FolderArchive, Heart, DollarSign, X, Menu, ProjectorIcon } from "lucide-react";
+import { Home, FolderArchive, Heart,  X, Menu} from "lucide-react";
 import { Button } from "@/components/ui/button";
 import logo from "@/assets/logo.svg";
 import { useEffect, useRef, useState } from "react";

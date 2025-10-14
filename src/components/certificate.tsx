@@ -1,10 +1,8 @@
 import { useState } from "react"
-import { ArrowRight, Award, ExternalLink } from "lucide-react"
+import { ArrowRight, Award } from "lucide-react"
 import { Card } from "@/components/ui/card"
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog"
-import sololearn from "@/assets/certificatelogo/sololearn.svg"
 import { Button } from "./ui/button"
-import { Badge } from "./ui/badge"
 
 export default function Certificate() {
     const [selectedImage, setSelectedImage] = useState<string | null>(null)

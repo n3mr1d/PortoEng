@@ -1,4 +1,4 @@
-import { Building, ChevronDown, Computer, Eye, FileDown, Github, MapPin } from "lucide-react"
+import { Building, ChevronDown, Computer, Eye, FileDown, Github} from "lucide-react"
 import LightRays from "./background"
 import { Badge } from "./ui/badge"
 import TextType from "@/components/Typetext"
