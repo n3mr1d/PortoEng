@@ -6,6 +6,8 @@ import { Badge } from "@/components/ui/badge";
 import { Star, GitFork, ExternalLink, Github, Code2, HandGrab } from "lucide-react";
 import { Button } from "../ui/button";
 import Navbar from "../Navbar";
+import { Dialog, DialogContent } from "../ui/dialog";
+import { DialogTrigger } from "@radix-ui/react-dialog";
 
 // 🎨 Animation variants for framer-motion
 const fadeInUp = {
@@ -18,6 +20,7 @@ const fadeInUp = {
 };
 
 export default function Contribution() {
+    const [open, setOpen] = useState<string|null>(null);
   const [repos, setRepos] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
   const [username, setUsername] = useState<string>("");
@@ -177,15 +180,26 @@ export default function Contribution() {
                     transition={{ duration: 0.5 }}
                     className="relative h-48 overflow-hidden bg-gradient-to-br from-gray-900 to-black"
                   >
+                                        <Dialog>
+                                            <DialogTrigger asChild>
                     <img
                       src={`https://raw.githubusercontent.com/${username}/${repo.name}/refs/heads/main/doc/images.png`}
                       alt={repo.name}
+                    onClick={() => setOpen(repo.name)}
+
                       className="w-full h-full object-cover group-hover:opacity-80 transition-all duration-700"
                       onError={(e) =>
                         (e.currentTarget.src =
                           "https://source.unsplash.com/800x600/?code,technology")
                       }
                     />
+                    </DialogTrigger>
+                    <DialogContent className="max-w-3xl bg-black/90 border-white/10 p-0 overflow-hidden">
+                        <img src={`https://raw.githubusercontent.com/${username}/${open}/refs/heads/main/doc/images.png`} alt="Project Preview"
+                            className="w-full h-auto object-contain" />
+                    </DialogContent>
+                    </Dialog>
+
 
                     {/* Language Badge */}
                     {repo.primaryLanguage && (

@@ -5,37 +5,27 @@ import { Button } from "./ui/button"
 
 const projects = [
     {
-        title: "E-Commerce Platform",
-        description: "Full-stack e-commerce solution with payment integration and real-time",
-        repo: "repo",
-        tags: ["React", "Node.js", "PostgreSQL", "Stripe"],
-        link: "#",
+        title: "EnfileUp",
+        description: "Full-stack anonymous uploader",
+        repo: "https://github.com/n3mr1d/uploadAnonv2",
+        tags: ["Tailwind CSS","Laravel","MySql","Nginx","PHP"],
+        link: "https://enfileup.prtcl.icu",
+        image: "https://raw.githubusercontent.com/n3mr1d/uploadAnonv2/refs/heads/main/doc/images.png"
     },
     {
-        title: "AI Chat Application",
-        description: "Real-time chat application with AI-powered responses and sentiment analysis",
-        tags: ["Next.js", "Python", "TensorFlow", "WebSocket"],
-        repo: "repo",
-        link: "#",
+        title: "DirLibrary",
+        description: "Anonymous library for sharing e-books,story and other media",
+        tags: ["Laravel", "PHP", "MySQL", "Nginx"],
+        repo: "https://github.com/n3mr1d/DirLibrary",
+        image:"https://github.com/n3mr1d/libanon/blob/main/doc/images.png?raw=true",
+        link: "https://anonlib.prtcl.icu",
     },
-    {
-        title: "Analytics Dashboard",
-        description: "Interactive data visualization dashboard for business intelligence",
-        tags: ["React", "D3.js", "FastAPI", "MongoDB"],
-        repo: "repo",
-        link: "#",
-    },
-    {
-        title: "DevOps Pipeline",
-        description: "Automated CI/CD pipeline with containerization and monitoring",
-        tags: ["Docker", "Kubernetes", "Jenkins", "AWS"],
-        link: "#",
-        repo: "repo",
-    },
+
 ]
 
 
 export default function FeatureProject() {
+
     function handleClick(link: string) {
         window.open(link, "_blank")
     }

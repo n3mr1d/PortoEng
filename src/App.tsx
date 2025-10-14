@@ -21,9 +21,11 @@ import ProfileGit from "./components/profileGit"
 import FeatureProject from "./components/featureproject"
 import Hero from "./components/hero"
 import Getouch from "./components/gettouch"
+import LogoLoader from "./components/loader"
 export default function Page() {
     const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
     const rootRef = useRef<HTMLDivElement | null>(null)
+    const [loading, setloading] = useState(true)
     document.title = "Home | Nameraid";
     function umurHitung(umur: number) {
         const tahun = new Date().getFullYear();
@@ -94,31 +96,41 @@ export default function Page() {
 
         return () => ctx.revert()
     }, [])
-
+    useEffect(() => {
+        const timeOut = setTimeout(() => {
+            setloading(false)
+        }, 3000)
+        return () => clearTimeout(timeOut)
+    }, [])
     const skills = [
         {
             name: "Frontend",
             icon:
                 <Layers className="w-6 h-6" />,
-            items: ["React", "TypeScript", "Tailwind CSS", "Next.js"],
+            items: ["React", "TypeScript", "Tailwind CSS", "HTML", "CSS"],
         },
         {
             name: "Backend",
             icon:
                 <Server className="w-6 h-6" />,
-            items: ["Node.js", "Python", "Express", "FastAPI"],
+            items: ["PHP"],
         },
         {
             name: "Database",
             icon:
                 <Database className="w-6 h-6" />,
-            items: ["PostgreSQL", "MongoDB", "Redis", "Firebase"],
+            items: ["PostgreSQL", "MariaDB", "MySQL", "MongoDB"],
         },
         {
             name: "Tools",
             icon: <Code className="w-6 h-6" />,
-            items: ["Git", "Docker", "AWS", "Linux"],
+            items: ["Git", "Linux"],
         },
+        {
+            name: "Frameworks",
+            icon: <Code className="w-6 h-6" />,
+            items: ["Vite", "Next.js", "Laravel"],
+        }
     ]
 
 
@@ -153,96 +165,87 @@ export default function Page() {
                 , backgroundSize: "50px 50px",
             }} />
 
-            {/* Navbar */}
-            <Navbar />
-
-            {/* Hero Section */}
-
-            <Hero />
-            <section className="w-full flex justify-center">
-                <Banner speed={10000} />
-            </section>
-
-
-            <section id="about"
-                className="reveal-section min-h-screen flex items-center justify-center px-6 py-20">
-                <div className="max-w-5xl flex flex-col justify-center mx-auto w-full">
-                    <div className="flex justify-center">
-                        <div
-                            className="header-badge inline-flex justify-center items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 mb-6">
-                            <User className="w-4 h-4 text-white" />
-                            <span className="text-sm text-gray-400">Who Am I</span>
-                        </div>
-                    </div>
-
-                    {/* Title */}
-                    <h2
-                        className="text-4xl md:text-5xl flex items-center justify-center font-bold mb-12 text-center">
-                        <span className="bg-gradient-to-r from-white to-gray-400 bg-clip-text text-transparent">
-                            About Me
-                        </span>
-                    </h2>
-
-                    {/* Content */}
-                    <div className="flex flex-col-reverse md:flex-row gap-8">
-
-                        {/* Left Card (Text) */}
-                        <Card className="bg-white/5 border-white/10 w-full backdrop-blur-lg shadow-lg">
-                            <CardContent className="p-8">
-                                <p className="text-lg text-gray-300 leading-relaxed mb-6">
-                                    I'm a passionate full-stack developer with expertise in building
-                                    scalable web applications. With a strong foundation in both
-                                    frontend and backend technologies, I create seamless digital
-                                    experiences that solve real-world problems.
-                                </p>
-                                <p className="text-lg text-gray-300 leading-relaxed mb-6">
-                                    My journey in software development started with a curiosity about
-                                    how things work on the web. Today, I specialize in modern
-                                    JavaScript frameworks, cloud architecture, and database
-                                    optimization.
-                                </p>
-                                <div className="flex flex-wrap gap-3">
-                                    <Badge variant="outline" className="border-white/20 text-white">
-                                        5+ Years Experience
-                                    </Badge>
-                                    <Badge variant="outline" className="border-white/20 text-white">
-                                        20+ Projects Completed
-                                    </Badge>
-                                    <Badge variant="outline" className="border-white/20 text-white">
-                                        Open Source Contributor
-                                    </Badge>
-                                </div>
-                            </CardContent>
-                        </Card>
-
-                        {/* Right Card (Image) */}
-                        <Card
-                            className="bg-white/5 border-white/10 w-full md:max-w-sm backdrop-blur-lg shadow-lg flex items-center justify-center">
-                            <CardContent className="p-6 flex-col flex justify-center">
-                                <div className="relative">
-                                    <img src="./file.png" alt="About me"
-                                        className="rounded-lg w-full h-auto object-cover shadow-md" />
-                                    <div className="absolute m-2 top-0 right-0">
-                                        <Badge className="border-white/20 font-xl text-white">
-                                            <User /> {umurHitung(2006)} <span className="text-gray-400">Years
-                                                Old</span>
-                                        </Badge>
-
-                                    </div>
-                                </div>
-
-                                <div>
-
-                                    <BorderBeamButton />
-                                </div>
-                            </CardContent>
-                        </Card>
-                    </div>
+            {loading ? (
+                <div className="flex flex-col items-center justify-center min-h-screen bg-black text-white">
+                  <LogoLoader rotate={false} colorClassName="text-white" />
+                    <span>Loading ...</span>
                 </div>
-            </section>
-            <ProfileGit />
-            <Certificate />
-            {/* Skills Section */}
+            ) : (
+                    <>
+                    <Navbar />
+
+
+                    <Hero />
+                    <section className="w-full flex justify-center">
+                        <Banner speed={10000} />
+                    </section>
+
+
+                    <section id="about"
+                        className="reveal-section min-h-screen flex items-center justify-center px-6 py-20">
+                        <div className="max-w-5xl flex flex-col justify-center mx-auto w-full">
+                            <div className="flex justify-center">
+                                <div
+                                    className="header-badge inline-flex justify-center items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 mb-6">
+                                    <User className="w-4 h-4 text-white" />
+                                    <span className="text-sm text-gray-400">Who Am I</span>
+                                </div>
+                            </div>
+
+                            {/* Title */}
+                            <h2
+                                className="text-4xl md:text-5xl flex items-center justify-center font-bold mb-12 text-center">
+                                <span className="bg-gradient-to-r from-white to-gray-400 bg-clip-text text-transparent">
+                                    About Me
+                                </span>
+                            </h2>
+
+                            {/* Content */}
+                            <div className="flex flex-col-reverse md:flex-row gap-8">
+
+                                {/* Left Card (Text) */}
+                                <Card className="bg-white/5 border-white/10 w-full backdrop-blur-lg shadow-lg">
+                                    <CardContent className="p-8">
+                                        <p className="text-lg text-gray-300 leading-relaxed mb-6">
+                                            I'm a passionate full-stack developer with expertise in building
+                                            scalable web applications. With a strong foundation in both
+                                            frontend and backend technologies, I create seamless digital
+                                            experiences that solve real-world problems.
+                                        </p>
+                                        <p className="text-lg text-gray-300 leading-relaxed mb-6">
+                                            My journey in software development started with a curiosity about
+                                            how things work on the web. </p>
+                                    </CardContent>
+                                </Card>
+
+                                {/* Right Card (Image) */}
+                                <Card
+                                    className="bg-white/5 border-white/10 w-full md:max-w-sm backdrop-blur-lg shadow-lg flex items-center justify-center">
+                                    <CardContent className="p-6 flex-col flex justify-center">
+                                        <div className="relative">
+                                            <img src="./file.png" alt="About me"
+                                                className="rounded-lg w-full h-auto object-cover shadow-md" />
+                                            <div className="absolute m-2 top-0 right-0">
+                                                <Badge className="border-white/20 font-xl text-white">
+                                                    <User /> {umurHitung(2006)} <span className="text-gray-400">Years
+                                                        Old</span>
+                                                </Badge>
+
+                                            </div>
+                                        </div>
+
+                                        <div>
+
+                                            <BorderBeamButton />
+                                        </div>
+                                    </CardContent>
+                                </Card>
+                            </div>
+                        </div>
+                    </section>
+                    <ProfileGit />
+                    <Certificate />
+                    {/* Skills Section */}
             <section id="skills"
                 className="reveal-section min-h-screen flex items-center justify-center px-6 py-20">
                 <div className="max-w-6xl mx-auto w-full">
@@ -282,12 +285,14 @@ export default function Page() {
                     </div>
                 </div>
             </section>
-            {/* Projects Section */}
+
             <FeatureProject />
-            {/* Contact Section */}
-           <Getouch/>
-            {/* Footer */}
+            <Getouch />
             <Footer />
+            </>
+         )}
+
         </div>
+
     )
 }

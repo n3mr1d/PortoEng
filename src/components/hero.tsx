@@ -12,6 +12,15 @@ export default function Hero() {
     function handleClick(link: string) {
         window.open(link, "_blank")
     }
+    function handleDownload(link: string) {
+        const a = document.createElement('a');
+        a.href = link;
+        a.download = 'osama_nurul_haq_cv.pdf';
+        document.body.appendChild(a);
+        a.click();
+        URL.revokeObjectURL(a.href);
+
+    }
     return (
         <section id="home" className="relative min-h-screen flex items-center justify-center px-6 pt-20 overflow-hidden">
             {/* Light Rays */}
@@ -62,15 +71,19 @@ export default function Hero() {
                                 Curriculum Vitae
                             </DropdownMenuLabel>
                             <DropdownMenuGroup>
-                                <DropdownMenuItem onClick={() => console.log("Download CV clicked")}
+                                <DropdownMenuItem onClick={() => handleDownload('/src/cv/osama_nurul_haq_cv')}
                                     className="cursor-pointer hover:bg-white/10 focus:bg-white/10 focus:text-white
                             transition-colors duration-200"
                                 >
-                                    <FileDown className="w-4 h-4 mr-2 text-gray-300" />
+                                    <FileDown  className="w-4 h-4 mr-2
+
+                                text-gray-300" />
                                     Download CV (PDF)
                                 </DropdownMenuItem>
 
-                                <DropdownMenuItem onClick={() => console.log("VIEW Cv Clicked")} className="cursor-pointer
+                                <DropdownMenuItem onClick={() =>
+                                    handleClick('/src/cv/osama_nurul_haq_cv.pdf')}
+                                    className="cursor-pointer
                             hover:bg-white/10 focus:bg-white/10 focus:text-white">
                                     <Eye className="w-4 h-4 mr-2 text-gray-300" />
                                     View CV
