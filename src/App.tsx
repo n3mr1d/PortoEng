@@ -1,8 +1,6 @@
 import { useEffect, useRef, useState } from "react"
 import {
-    Github,
-    Linkedin,
-    Mail,
+
     Code,
     Database,
     Server,
@@ -12,11 +10,9 @@ import {
 } from "lucide-react"
 import { Badge } from "@/components/ui/badge"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
 import Navbar from "@/components/Navbar"
 import gsap from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
-
 import { Banner } from "./components/banner"
 import Footer from "./components/footer"
 import BorderBeamButton from "./components/borderBem"
@@ -24,7 +20,7 @@ import Certificate from "./components/certificate"
 import ProfileGit from "./components/profileGit"
 import FeatureProject from "./components/featureproject"
 import Hero from "./components/hero"
-
+import Getouch from "./components/gettouch"
 export default function Page() {
     const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
     const rootRef = useRef<HTMLDivElement | null>(null)
@@ -289,47 +285,7 @@ export default function Page() {
             {/* Projects Section */}
             <FeatureProject />
             {/* Contact Section */}
-            <section id="contact"
-                className="reveal-section min-h-screen flex items-center justify-center px-6 py-20">
-                <div className="max-w-4xl mx-auto w-full text-center">
-                    <h2 className="text-4xl md:text-5xl font-bold mb-8">
-                        <span
-                            className="bg-gradient-to-r from-white to-gray-400 bg-clip-text text-transparent">Get
-                            In Touch</span>
-                    </h2>
-                    <p className="text-xl text-gray-400 mb-12 max-w-2xl mx-auto">
-                        I'm always open to discussing new projects, creative ideas, or opportunities to be part
-                        of your vision.
-                    </p>
-                    <Card className="bg-white/5 border-white/10 backdrop-blur">
-                        <CardContent className="p-8">
-                            <div className="flex flex-col md:flex-row gap-4 justify-center">
-                                <Button className="bg-white text-black hover:bg-gray-200 gap-2" onClick={() =>
-                                    (window.location.href = "mailto:your@email.com")}
-                                >
-                                    <Mail className="w-4 h-4" />
-                                    Email Me
-                                </Button>
-                                <Button variant="outline"
-                                    className="border-white/20 text-white hover:bg-white/10 gap-2 bg-transparent"
-                                    onClick={() => window.open("https://github.com", "_blank")}
-                                >
-                                    <Github className="w-4 h-4" />
-                                    GitHub
-                                </Button>
-                                <Button variant="outline"
-                                    className="border-white/20 text-white hover:bg-white/10 gap-2 bg-transparent"
-                                    onClick={() => window.open("https://linkedin.com", "_blank")}
-                                >
-                                    <Linkedin className="w-4 h-4" />
-                                    LinkedIn
-                                </Button>
-                            </div>
-                        </CardContent>
-                    </Card>
-                </div>
-            </section>
-
+           <Getouch/>
             {/* Footer */}
             <Footer />
         </div>

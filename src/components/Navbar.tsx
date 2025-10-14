@@ -1,6 +1,6 @@
-import { NavLink, useLocation } from "react-router-dom";
+import { Link, NavLink, useLocation } from "react-router-dom";
 import { motion } from "framer-motion";
-import { Home, FolderArchive, Heart, DollarSign, X, Menu } from "lucide-react";
+import { Home, FolderArchive, Heart, DollarSign, X, Menu, ProjectorIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import logo from "@/assets/logo.svg";
 import { useEffect, useRef, useState } from "react";
@@ -41,9 +41,8 @@ export default function Navbar() {
 
     const navlist = [
         { name: "Home", href: "/", icon: Home },
-        { name: "Project", href: "/project", icon: FolderArchive },
         { name: "Donate", href: "/donate", icon: Heart },
-        { name: "Contribution", href: "/contribution", icon: DollarSign },
+        { name: "Project", href: "/contribution", icon: FolderArchive },
     ];
 
     return (
@@ -81,15 +80,18 @@ export default function Navbar() {
 
                 {/* Button */}
                 <div className="hidden md:flex">
+
                     <Button variant="secondary"
                         className="bg-white text-black hover:bg-gray-200 transition-all duration-200 font-semibold">
-                        Touch Me
+                       <Link to="/linktree">Touch Me</Link>
+
                     </Button>
                 </div>
 
                 {/* Mobile Menu Button */}
                 <div className="md:hidden">
                     <Button variant="ghost" size="icon" onClick={openMobile} className="text-white">
+
                         {open ?
                             <X className="w-6 h-6" /> :
                             <Menu className="w-6 h-6" />}
@@ -113,7 +115,9 @@ export default function Navbar() {
                 </NavLink>
             ))}
             <Button className="w-full bg-white text-black hover:bg-gray-200 font-semibold">
+                        <Link to="/linktree" className="flex items-center justify-center">
                 Touch Me
+                </Link>
             </Button>
         </div>
     )

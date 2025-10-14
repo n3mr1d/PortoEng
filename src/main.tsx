@@ -7,10 +7,13 @@ import Donate from "./components/pages/donate.tsx";
 
 import Linktree from "./components/pages/linktree.tsx";
 import Contribution from "./components/pages/contribution.tsx";
+import { Toaster } from "sonner";
 
 createRoot(document.getElementById("root")!).render(
     <StrictMode>
+       <Toaster/>
         <BrowserRouter>
+
             <Routes>
                 <Route path="/" element={<App />} />
                 <Route path="/donate" element={<Donate />} />
