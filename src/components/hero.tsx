@@ -71,7 +71,7 @@ export default function Hero() {
                                 Curriculum Vitae
                             </DropdownMenuLabel>
                             <DropdownMenuGroup>
-                                <DropdownMenuItem onClick={() => handleDownload('/src/cv/osama_nurul_haq_cv')}
+                                <DropdownMenuItem onClick={() => handleDownload('/src/cv/osama_nurul_haq_cv.pdf')}
                                     className="cursor-pointer hover:bg-white/10 focus:bg-white/10 focus:text-white
                             transition-colors duration-200"
                                 >
