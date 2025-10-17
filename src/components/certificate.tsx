@@ -3,6 +3,7 @@ import { ArrowRight, Award } from "lucide-react"
 import { Card } from "@/components/ui/card"
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog"
 import { Button } from "./ui/button"
+import { Badge } from "./ui/badge"
 
 export default function Certificate() {
     const [selectedImage, setSelectedImage] = useState<string | null>(null)
@@ -38,6 +39,12 @@ export default function Certificate() {
             source: 'https://www.sololearn.com/certificates/CC-7EIB8KAI',
             image: '/src/sql-introduction.png'
         },
+        {
+            title: "Introduction AI",
+            desc: "has successfully completed the course by demonstrating theoretical and practical understanding off",
+            source:"https://www.dicoding.com/certificates/0LZ054WJNX65",
+            image:"/src/ai-introduction.png",
+        }
 
     ]
 
