@@ -3,7 +3,6 @@ import { ArrowRight, Award } from "lucide-react"
 import { Card } from "@/components/ui/card"
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog"
 import { Button } from "./ui/button"
-import { Badge } from "./ui/badge"
 
 export default function Certificate() {
     const [selectedImage, setSelectedImage] = useState<string | null>(null)
@@ -19,7 +18,7 @@ export default function Certificate() {
             title: 'Introduction to CSS',
             desc: 'has successfully completed the course by demonstrating theoretical and practical understanding off',
             source: 'https://www.sololearn.com/certificates/CC-VHPL7GQM',
-            image: '/src/html-introduction.png'
+            image: '/src/css-introduction.png'
         },
         {
             title: 'Introduction to JavaScript',
